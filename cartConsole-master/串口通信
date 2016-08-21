@@ -1,0 +1,2 @@
+Cannot open /dev/ttyUSB0: Permission denied
+sudo chmod a+rw /dev/ttyUSB0
