@@ -7,12 +7,6 @@ import struct
 import time
 import threading
 import scipy as np
-import rospy
-import tf
-import PyKDL as kdl
-
-from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Point, Quaternion
 
 class SerialCtrl(object):
 
@@ -54,12 +48,6 @@ class SerialCtrl(object):
 
 class HeilsCar(object):
 	def __init__(self):
-
-		self.X = 0
-		self.Y = 0
-		self.Z = 0
-		self.A = 0
-		rospy.init_node('serial_port',anonymous = False)
 		self.Com = SerialCtrl()
 		self.Com.OpenSerial()
 		self.threads = []
@@ -73,43 +61,27 @@ class HeilsCar(object):
 		self.rt.join() 		
 
 	def ReadData(self):
+		self.Com.ser.write('MS0128063901000\n\r99b\n\r')
 		while True:
-			# self.serRead = self.Com.ReadLine()
-			# if self.serRead.strip() == '':
-			# 	pass
-			# else:
-			# 	self.info = tuple(eval(self.serRead))
-			# 	# print self.info
-			# 	if self.info[-1] == 1:
-			# 		(self.X, self.Y,
-			# 		self.A, self.T) = (self.info[0], self.info[1],
-			# 							self.info[2], self.info[3])
-			# 		print self.X, self.Y,self.A, self.T
-			self.X, self.Y,self.A, self.T = 10, 20, 0, 40
-			#print self.X, self.Y,self.A, self.T
-			time.sleep(0.05)
+			# self.Com.ser.write('MS0128063901000\n\r99b\n\r')
+		# 	self.serRead = self.Com.ReadLine()
+		# 	if self.serRead.strip() == '':
+		# 		pass
+		# 	else:
+		# 		self.info = tuple(eval(self.serRead))
+		# 		# print self.info
+		# 		if self.info[-1] == 1:
+		# 			(self.X, self.Y,
+		# 			self.A, self.T) = (self.info[0], self.info[1],
+		# 								self.info[2], self.info[3])
+		# 			print self.X, self.Y,self.A, self.T
+			time.sleep(0.005)
 
 	def PublicMsgs(self):
-		self.gps_ekf_odom_pub = rospy.Publisher('/odom', Odometry, queue_size=5)
-		self.frame_id = '/odom'
-		self.child_frame_id = '/base_footprint'
-		self.odom_msg = Odometry()
-
-		self.odom_msg.header.frame_id = self.frame_id
-		self.odom_msg.child_frame_id = self.child_frame_id
-
-		rate = rospy.Rate(5)
-		while not rospy.is_shutdown():
-			self.odom_msg.header.stamp = rospy.Time.now()
-			self.odom_msg.pose.pose.position = Point(self.X, self.Y, 0)
-			self.odom_msg.pose.pose.orientation = Quaternion(*(kdl.Rotation.RPY(0, 0, self.A).GetQuaternion()))
-			self.gps_ekf_odom_pub.publish(self.odom_msg)
-			# print self.odom_msg.pose.pose.position 
-			# print self.odom_msg.pose.pose.orientation
-			rate.sleep()
-
+		while True:
+			print 'continue'
+			time.sleep(0.2)
 
 if __name__ == '__main__':
-	# rospy.init_node('serial_port',anonymous = False)
 	heilsCar = HeilsCar()
 
