@@ -4,6 +4,7 @@
 import sys
 import serial
 import struct
+import binascii
 import time
 import threading
 import scipy as np
@@ -115,10 +116,14 @@ class HeilsCar(object):
 		rospy.Subscriber('cmd_vel', Twist, self.CallBack)
 		rospy.spin()
 	def CallBack(self, twist):
-		print twist
-		#print("publihsed: vx: {0}, wy: {1}, rot: {2}".format(twist.linear.x, twist.linear.y, twist.angular.z))
-
-
+		# print twist
+		print("publihsed: vx: {0}, wy: {1}, rot: {2}".format(twist.linear.x, twist.linear.y, twist.angular.z))
+		head = struct.pack('BB',0x0D, 0x0A)
+		bytes = struct.pack('fff',twist.linear.x, twist.linear.y, twist.angular.z)
+		tail = struct.pack('BB',0x0A, 0x0D)
+		# bytes = struct.pack('BBBB',0x0D, 0x0A, 0x0A, 0x0D)
+		# print binascii.hexlify(head + bytes + tail)
+		self.Com.ser.write(head + bytes + tail)
 
 if __name__ == '__main__':
 	# rospy.init_node('serial_port',anonymous = False)
