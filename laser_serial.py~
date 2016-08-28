@@ -85,5 +85,3 @@ class HeilsCar(object):
 if __name__ == '__main__':
 	heilsCar = HeilsCar()
 
-#
-
