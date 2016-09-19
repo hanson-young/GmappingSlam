@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/devel
+
+Name: kdl_parser_py
+Description: Description of kdl_parser_py
+Version: 1.12.4
+Cflags: 
+Libs: -L/home/flysnow/ws/devel/lib -lkdl_parser_py
+Requires: urdf

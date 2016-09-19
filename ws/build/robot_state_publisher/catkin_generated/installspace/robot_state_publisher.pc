@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/install
+
+Name: robot_state_publisher
+Description: Description of robot_state_publisher
+Version: 1.13.2
+Cflags: -I/home/flysnow/ws/install/include -I/usr/include/eigen3 -I/opt/ros/indigo/include
+Libs: -L/home/flysnow/ws/install/lib -lrobot_state_publisher_solver -l:/opt/ros/indigo/lib/liborocos-kdl.so.1.3.0
+Requires: roscpp rosconsole rostime tf2_ros tf2_kdl kdl_parser

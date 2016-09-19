@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/install
+
+Name: rgbd_launch
+Description: Description of rgbd_launch
+Version: 2.1.2
+Cflags: 
+Libs: -L/home/flysnow/ws/install/lib 
+Requires: 

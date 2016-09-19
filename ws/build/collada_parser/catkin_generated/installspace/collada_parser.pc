@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/install
+
+Name: collada_parser
+Description: Description of collada_parser
+Version: 1.12.4
+Cflags: -I/home/flysnow/ws/install/include -I/usr/include
+Libs: -L/home/flysnow/ws/install/lib -lcollada_parser
+Requires: roscpp urdf_parser_plugin

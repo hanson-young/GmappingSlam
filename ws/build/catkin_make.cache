@@ -1,0 +1,2 @@
+collada_parser:collada_urdf:depthimage_to_laserscan:joint_state_publisher:kdl_parser:kdl_parser_py:rbx1/rbx1:rbx1/rbx1_apps:rbx1/rbx1_bringup:rbx1/rbx1_description:rbx1/rbx1_dynamixels:rbx1/rbx1_nav:rbx1/rbx1_speech:rbx1/rbx1_vision:rgbd_launch:robot_model:robot_state_publisher:smartcar:smartcar_description:smartcar_teleop:urdf:urdf_parser_plugin
+-DCATKIN_DEVEL_PREFIX=/home/flysnow/ws/devel -DCMAKE_INSTALL_PREFIX=/home/flysnow/ws/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/devel
+
+Name: rbx1_nav
+Description: Description of rbx1_nav
+Version: 0.4.0
+Cflags: -I/home/flysnow/ws/devel/include
+Libs: -L/home/flysnow/ws/devel/lib 
+Requires: dynamic_reconfigure

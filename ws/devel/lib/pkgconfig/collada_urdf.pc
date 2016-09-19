@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/devel
+
+Name: collada_urdf
+Description: Description of collada_urdf
+Version: 1.12.4
+Cflags: -I/home/flysnow/ws/src/collada_urdf/include
+Libs: -L/home/flysnow/ws/devel/lib -lcollada_urdf
+Requires: angles collada_parser resource_retriever urdf geometric_shapes tf

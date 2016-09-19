@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/devel
+
+Name: smartcar_teleop
+Description: Description of smartcar_teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/flysnow/ws/devel/lib 
+Requires: 

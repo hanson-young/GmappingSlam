@@ -1,0 +1,8 @@
+prefix=/home/flysnow/ws/install
+
+Name: urdf_parser_plugin
+Description: Description of urdf_parser_plugin
+Version: 1.12.4
+Cflags: -I/home/flysnow/ws/install/include -I/usr/include
+Libs: -L/home/flysnow/ws/install/lib 
+Requires: 

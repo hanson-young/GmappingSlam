@@ -1,0 +1,20 @@
+<launch>
+<!--
+需要包：
+arbotix
+tf
+openNI
+rviz
+-->
+
+<!-- 打开openni.launch，加载kinect摄像头的驱动-->
+<!-- 打开freenect.launch，加载kinect摄像头的驱动,在测试中发现，openni.launch其实算是过时的安装包，结果加载kinect的时候显示未连接上，所以在这里换成freenect.launch-->
+   <include file="$(find freenect_launch)/launch/freenect.launch" />
+<!-- 打开depthimage_to_laserscan.launch，转换深度图为laserscan-->
+   <include file="$(find depthimage_to_laserscan)/launch/depthimage_to_laserscan.launch" />
+<!-- 创建静态tf转换发布节点，发布从机器人/head到kinect摄像头/camera_link的transform-->
+   <node pkg="tf" type="static_transform_publisher" name="head_to_laser_tf" args="0 0 0 0 0 0 1 /head /camera_link 100" />
+<!-- 打开smartcar_display.rviz.launch，发布小车，打开rviz -->
+   <include file="$(find smartcar_description)/launch/smartcar_display.rviz.launch" />
+
+</launch>
