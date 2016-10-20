@@ -1,0 +1,15 @@
+  <launch>
+<!-- 打开openni.launch，加载kinect摄像头的驱动-->
+   <include file="$(find openni_launch)/launch/openni.launch" />
+<!-- 打开depthimage_to_laserscan.launch，转换深度图为laserscan-->
+   <include file="$(find depthimage_to_laserscan)/launch/depthimage_to_laserscan.launch" /> 
+    <node pkg="base_tf" type="tf_broadcaster.py" name="odom_tf_broadcaster"   respawn="false" output="screen" >
+      <param name="frame" type="string" value="odomtery" />
+    </node>
+    <node name="scan_tf_broadcaster" pkg="base_tf" type="tf_broadcaster.py" respawn="false" output="screen" >
+      <param name="frame" type="string" value="scan" /> 
+    </node>
+    <node pkg="base_tf" type="tf_listener.py" name="listener" output="screen" />
+	<node pkg="base_tf" type="scan.py" name="scan" output="screen"/>
+	<node pkg="base_tf" type="odom.py" name="odom" output="screen"/>
+  </launch>

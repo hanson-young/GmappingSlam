@@ -1,0 +1,17 @@
+<launch>
+<!-- 打开openni.launch，加载kinect摄像头的驱动-->
+<!-- 打开freenect.launch，加载kinect摄像头的驱动,在测试中发现，openni.launch其实算是过时的安装包，结果加载kinect的时候显示未连接上，所以在这里换成freenect.launch-->
+   <include file="$(find freenect_launch)/launch/freenect.launch" />
+<!-- 打开depthimage_to_laserscan.launch，转换深度图为laserscan-->
+   <include file="$(find depthimage_to_laserscan)/launch/depthimage_to_laserscan.launch" />
+
+   <node pkg="tf" type="static_transform_publisher" name="head_to_laser_tf" args="0 0.15 0 0 0 0.7071 0.7071 /base_link /camera_link 100" />
+
+    <node pkg="base_tf" type="serial_port.py" name="serial_port" output="screen"/>
+
+
+    <node pkg="base_tf" type="tf_broadcaster.py" name="tf_broadcaster"   respawn="false" output="screen" >
+	<param name="frame" type="string" value="odom" />
+    </node>
+
+  </launch>

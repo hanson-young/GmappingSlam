@@ -1,0 +1,32 @@
+<launch>
+<!-- 打开openni.launch，加载kinect摄像头的驱动-->
+<!-- 打开freenect.launch，加载kinect摄像头的驱动,在测试中发现，openni.launch其实算是过时的安装包，结果加载kinect的时候显示未连接上，所以在这里换成freenect.launch-->
+   <include file="$(find freenect_launch)/launch/freenect.launch" />
+<!-- 打开depthimage_to_laserscan.launch，转换深度图为laserscan-->
+   <include file="$(find depthimage_to_laserscan)/launch/depthimage_to_laserscan.launch" />
+
+    <node pkg="base_tf" type="serial_port.py" name="serial_port" output="screen"/>
+
+
+    <node pkg="base_tf" type="laser_broadcaster.py" name="map_broadcaster"   respawn="false" output="screen" >
+      <param name="parent_frame_id" type="string" value="odom" />
+	<param name="child_frame_id" type="string" value="map" />
+    </node>
+
+    <node pkg="base_tf" type="odom_broadcaster.py" name="odom_broadcaster"   respawn="false" output="screen" />
+      <param name="parent_frame_id" type="string" value="base_link" />
+	<param name="child_frame_id" type="string" value="odom" />
+	</node>
+
+    <node pkg="base_tf" type="laser_broadcaster.py" name="laser_broadcaster"   respawn="false" output="screen" >
+      <param name="parent_frame_id" type="string" value="base_laser" />
+	<param name="child_frame_id" type="string" value="base_link" />
+    </node>
+
+    <node pkg="base_tf" type="laser_broadcaster.py" name="camera_broadcaster"   respawn="false" output="screen" >
+      <param name="parent_frame_id" type="string" value="camera_link" />
+	<param name="child_frame_id" type="string" value="base_link" />
+    </node>
+
+
+  </launch>
